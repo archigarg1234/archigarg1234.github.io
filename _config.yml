@@ -1,1 +1,16 @@
-theme: jekyll-theme-minimal
+title: "Archi's Portfolio"
+description: "Personal page"
+author: "Archi"
+theme: jekyll-theme-minimal  # A clean, simple theme
+show_downloads: true
+
+# Social links (optional)
+github_username: Archi  # Replace with your GitHub username
+linkedin_username: your-linkedin-profile  # Replace with your LinkedIn username
+
+# Navigation Links (Add if you want a menu)
+header_pages:
+  - index.md
+  - projects.md
+  - publications.md
+  - contact.md
