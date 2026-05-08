@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archi Garg — AI Research Engineer</title>
+<meta name="description" content="AI Research Engineer specializing in EEG-based neural decoding, neurotech, and computational neuroscience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0d12;
+    --bg2: #111520;
+    --bg3: #161c28;
+    --teal: #4ecdc4;
+    --teal-dim: #2a7a75;
+    --text: #e8eaf0;
+    --text-muted: #8890a4;
+    --text-dim: #4a5166;
+    --border: rgba(78,205,196,0.12);
+    --border-subtle: rgba(255,255,255,0.06);
+    --mono: 'DM Mono', monospace;
+    --serif: 'Fraunces', serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(10,13,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border-subtle);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(78,205,196,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 300;
+    color: var(--text-muted);
+    margin: 1.5rem 0 3rem;
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.8rem 1.75rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: #0a0d12;
+    border: 1px solid var(--teal);
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--teal);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 0.5px solid var(--border-subtle);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    left: 4rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: inline-block;
+    width: 48px;
+    height: 0.5px;
+    background: var(--text-dim);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+    max-width: 80px;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  h2 em { font-style: italic; color: var(--teal); }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .stat-cell {
+    background: var(--bg2);
+    padding: 1.5rem;
+  }
+
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── EXPERIENCE ── */
+  .timeline {
+    margin-top: 1rem;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-top: 0.5px solid var(--border-subtle);
+    position: relative;
+  }
+
+  .timeline-item:last-child {
+    border-bottom: 0.5px solid var(--border-subtle);
+  }
+
+  .timeline-meta {
+    padding-top: 0.25rem;
+  }
+
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-company {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--teal);
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-location {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .timeline-bullets li {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .timeline-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--teal);
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal-dim);
+    border: 0.5px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    margin-right: 4px;
+    margin-top: 6px;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .skill-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--border);
+  }
+
+  .skill-card-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-card-items {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.9;
+  }
+
+  /* ── PUBLICATIONS ── */
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .pub-item {
+    background: var(--bg2);
+    border: 0.5px solid var(--border-subtle);
+    border-left: 2px solid var(--teal-dim);
+    border-radius: 0 4px 4px 0;
+    padding: 1.25rem 1.5rem;
+    transition: border-left-color 0.2s;
+  }
+
+  .pub-item:hover {
+    border-left-color: var(--teal);
+  }
+
+  .pub-title {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+  }
+
+  .pub-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--border);
+    background: var(--bg3);
+  }
+
+  .project-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-metric {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  .ach-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .ach-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: var(--bg2);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 3px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .ach-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 6rem 4rem;
+    border-top: 0.5px solid var(--border-subtle);
+    text-align: center;
+  }
+
+  .contact-email {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 300;
+    color: var(--teal);
+    text-decoration: none;
+    display: block;
+    margin: 1.5rem auto 2.5rem;
+    transition: opacity 0.2s;
+  }
+
+  .contact-email:hover { opacity: 0.7; }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .social-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .social-link:hover { color: var(--teal); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 0.5px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .ach-list { grid-template-columns: 1fr; }
+    .contact-section { padding: 4rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  /* Fade-in on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">AG</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-tag">AI Research Engineer · Neurotech</p>
+  <h1>Archi<br><em>Garg</em></h1>
+  <p class="hero-subtitle">
+    Decoding the brain with machines — EEG signal processing, neural decoding, and deep learning at the intersection of neuroscience and AI.
+  </p>
+  <div class="hero-links">
+    <a href="#contact" class="btn btn-primary">Get in touch</a>
+    <a href="#experience" class="btn btn-ghost">View work ↓</a>
+    <a href="YOUR_CV_LINK_HERE" class="btn btn-ghost" target="_blank">Download CV</a>
+  </div>
+  <p class="hero-scroll">Scroll to explore</p>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label fade-in">About</p>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <h2>Brain signals,<br><em>decoded.</em></h2>
+      <p style="margin-top:1.5rem;">
+        I'm an AI Research Engineer at <strong>Brainwave Science</strong>, working at the intersection of neural signal processing and machine learning. My work focuses on extracting meaningful cognitive states from consumer-grade EEG devices — low hardware, high science.
+      </p>
+      <p>
+        My background spans computational neuroscience (Master's thesis on <strong>anxiety and valence coding in the mouse anterior insula</strong> at Bordeaux) and applied ML across time-series, clinical data, and real-time BCI systems.
+      </p>
+      <p>
+        I hold a <strong>BS-MS in Biology (Data Science Minor)</strong> from IISER Mohali, and have two peer-reviewed publications and a COSYNE 2025 poster to my name.
+      </p>
+    </div>
+    <div>
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-number">150+</div>
+          <div class="stat-label">Participants</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">~80%</div>
+          <div class="stat-label">Decoding Acc.</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number">$1K</div>
+          <div class="stat-label">Travel Grant</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label fade-in">Experience</p>
+  <div class="timeline fade-in">
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <p class="timeline-date">Nov 2025 — Present</p>
+        <p class="timeline-company">Brainwave Science</p>
+        <p class="timeline-location">India</p>
+      </div>
+      <div>
+        <p class="timeline-role">AI Research Engineer</p>
+        <ul class="timeline-bullets">
+          <li>Led end-to-end neuromarketing research using consumer-grade 2-channel EEG (FP1/FP2): designed experimental protocol, coordinated data collection with 150+ participants at IIT Mandi, and managed the full analysis pipeline from raw signal to model output.</li>
+          <li>Built signal preprocessing pipeline with bandpass/notch filtering, epoch-based baseline correction, and artifact rejection; applied FFT and wavelet transforms for time-frequency feature extraction.</li>
+          <li>Engineered comprehensive EEG feature set (FAA, Hjorth parameters, differential entropy, relative band powers, aperiodic slope) for aesthetic preference decoding.</li>
+          <li>Designed and trained a Cross-Subject Contrastive Learning (CSCL) model with domain-adversarial training to solve subject generalisation — achieving ~80% accuracy on downstream preference classification tasks.</li>
+          <li>Built a real-time EEG-based preference prediction interface integrating live stream processing and stimulus-locked feedback display.</li>
+        </ul>
+        <div style="margin-top:1rem;">
+          <span class="tag">EEG</span><span class="tag">CSCL</span><span class="tag">PyTorch</span><span class="tag">Signal Processing</span><span class="tag">Neuromarketing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <p class="timeline-date">Jun — Dec 2024</p>
+        <p class="timeline-company">Neurocenter Magendie</p>
+        <p class="timeline-location">Bordeaux, France</p>
+      </div>
+      <div>
+        <p class="timeline-role">Master's Research — Neural Coding of Anxiety & Valence</p>
+        <p style="font-size:13px; color: var(--text-dim); margin-bottom:0.75rem;">Advisor: Dr. Anna Beyeler</p>
+        <ul class="timeline-bullets">
+          <li>Analyzed mouse ephys data during anxiety and valence tasks to investigate neural coding using PCA, KNN, SVM, and deep learning methods.</li>
+          <li>Developed and maintained neural data processing pipeline; managed project repository on GitHub.</li>
+          <li>Presented weekly project updates, improving scientific communication and teamwork.</li>
+        </ul>
+        <div style="margin-top:1rem;">
+          <span class="tag">Electrophysiology</span><span class="tag">PCA</span><span class="tag">SVM</span><span class="tag">Mouse Behaviour</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <p class="timeline-date">Jan — May 2024</p>
+        <p class="timeline-company">Sabudh Foundation</p>
+        <p class="timeline-location">India</p>
+      </div>
+      <div>
+        <p class="timeline-role">Data Science & Machine Learning Intern</p>
+        <ul class="timeline-bullets">
+          <li>Built an LSTM-based model for ICU multivariate time-series to predict sepsis onset — achieving AUC 0.78 on held-out data.</li>
+          <li>Gained hands-on experience with CNN, RNN, and broader deep learning frameworks.</li>
+        </ul>
+        <div style="margin-top:1rem;">
+          <span class="tag">LSTM</span><span class="tag">Time-Series</span><span class="tag">Clinical ML</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label fade-in">Technical Skills</p>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <p class="skill-card-label">Programming</p>
+      <p class="skill-card-items">Python · NumPy · Pandas · scikit-learn · PyTorch</p>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">EEG & Neuro</p>
+      <p class="skill-card-items">MNE-Python · LSL · BrainLink SDK · FFT · Wavelet · FAA · Hjorth</p>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Deep Learning</p>
+      <p class="skill-card-items">Contrastive Learning · Domain Adversarial Training · CNNs · LSTMs · Transformers</p>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Tools</p>
+      <p class="skill-card-items">VS Code · Jupyter · Colab · LaTeX · GitHub · Illustrator</p>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Lab Skills</p>
+      <p class="skill-card-items">IHC · Nissl/Golgi staining · Microscopy · Cell culture · Molecular cloning</p>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-label">Methods</p>
+      <p class="skill-card-items">LOSO Cross-validation · RSA · Feature Engineering · Signal Preprocessing</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label fade-in">Projects</p>
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <p class="project-name">EEG Motor Task Classification</p>
+      <p class="project-desc">DeepConvNet pipeline to decode 3-class motor tasks (rest/left/right) from EEG using LOSO cross-validation.</p>
+      <p class="project-metric">Accuracy 0.70 · F1 0.667</p>
+      <div><span class="tag">DeepConvNet</span><span class="tag">BCI</span></div>
+    </div>
+    <div class="project-card">
+      <p class="project-name">Grammar Scoring Engine</p>
+      <p class="project-desc">Used Whisper for audio transcription, extracted linguistic features, trained regression models to predict grammar scores.</p>
+      <p class="project-metric">RMSE = 0.73</p>
+      <div><span class="tag">Whisper</span><span class="tag">NLP</span></div>
+    </div>
+    <div class="project-card">
+      <p class="project-name">Facial Expression Recognition</p>
+      <p class="project-desc">CNN model classifying facial expressions across emotion categories from image data.</p>
+      <p class="project-metric">Accuracy 0.80</p>
+      <div><span class="tag">CNN</span><span class="tag">Computer Vision</span></div>
+    </div>
+    <div class="project-card">
+      <p class="project-name">Sepsis Onset Prediction</p>
+      <p class="project-desc">LSTM model on ICU multivariate time-series data for early sepsis prediction.</p>
+      <p class="project-metric">AUC 0.78</p>
+      <div><span class="tag">LSTM</span><span class="tag">Clinical AI</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <p class="section-label fade-in">Publications</p>
+  <div class="pub-list fade-in">
+    <div class="pub-item">
+      <p class="pub-title">Couderc Y, Reddy TD, <strong>Garg A</strong>, et al. Dopamine transmission in the anterior insula shapes neural coding of anxiety.</p>
+      <p class="pub-meta">bioRxiv · 2024</p>
+    </div>
+    <div class="pub-item">
+      <p class="pub-title">Choudhury S, <strong>Garg A</strong>, et al. Strategies in Parkinson's Disease Therapeutics.</p>
+      <p class="pub-meta">Current Topics in Medicinal Chemistry · 2024</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="section-label fade-in">Recognition</p>
+  <div class="ach-list fade-in">
+    <div class="ach-item"><div class="ach-dot"></div><span>COSYNE 2025 (Montreal) — Poster + $1,000 travel grant</span></div>
+    <div class="ach-item"><div class="ach-dot"></div><span>EMBO Workshop 2025 — Poster selection</span></div>
+    <div class="ach-item"><div class="ach-dot"></div><span>POSE Scholarship (2020–2025) — IISER Mohali</span></div>
+    <div class="ach-item"><div class="ach-dot"></div><span>Organized IISER Foundation Day — 1200+ attendees</span></div>
+    <div class="ach-item"><div class="ach-dot"></div><span>Design volunteer, iGEM IISER Mohali 2022</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <p class="section-label fade-in" style="justify-content: center;">Contact</p>
+  <h2 class="fade-in" style="text-align:center;">Let's build something<br><em>interesting.</em></h2>
+  <a href="mailto:your@email.com" class="contact-email fade-in">your@email.com</a>
+  <div class="social-links fade-in">
+    <a href="https://linkedin.com/in/yourprofile" class="social-link" target="_blank">LinkedIn</a>
+    <a href="https://github.com/yourusername" class="social-link" target="_blank">GitHub</a>
+    <a href="YOUR_CV_LINK_HERE" class="social-link" target="_blank">CV / Resume</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Archi Garg</p>
+  <p>Built with HTML · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
